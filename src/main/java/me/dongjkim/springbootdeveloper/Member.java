@@ -1,11 +1,12 @@
 package me.dongjkim.springbootdeveloper;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
 @Entity
@@ -18,5 +19,9 @@ public class Member {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    public void changeName(String name){
+        this.name = name;
+    }
 
 }
