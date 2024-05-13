@@ -17,6 +17,7 @@ if(deleteButton){
 const modifyButton = document.getElementById('modify-btn');
 
 if (modifyButton) {
+    console.log("나실행됌");
     modifyButton.addEventListener('click', event => {
         let params = new URLSearchParams(location.search);
         let id = params.get('id');
