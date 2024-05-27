@@ -16,6 +16,16 @@ spring:
   h2: # h2 콘솔 활성화
     console:
       enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id:
+            client-secret: 
+            scope:
+              - email
+              - profile
 
 jwt:
   issuer: ajufresh@gmail.com
