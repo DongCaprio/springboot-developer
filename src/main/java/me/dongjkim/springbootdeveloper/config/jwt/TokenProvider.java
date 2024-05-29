@@ -36,13 +36,13 @@ public class TokenProvider {
         System.out.println("jwtProperties.getSecretKey() : "+jwtProperties.getIssuer());
 
         return Jwts.builder()
-                .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
-                .setIssuer(jwtProperties.getIssuer())
-                .setIssuedAt(now)
-                .setExpiration(expiry)
-                .setSubject(user.getEmail())
-                .claim("id", user.getId())
-                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+                .setHeaderParam(Header.TYPE, Header.JWT_TYPE) //헤더 typ : JWT
+                .setIssuer(jwtProperties.getIssuer()) //내용 iss
+                .setIssuedAt(now) // iat : 현재시간
+                .setExpiration(expiry) // exp : expiry 멤버 변숫값(Date)
+                .setSubject(user.getEmail())  // sub : 유저의 이메일
+                .claim("id", user.getId()) // 클레임 id : 유저 ID
+                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey()) //서명 : 비밀값과 함께 해시값을 HS256 방식으로 암호화
                 .compact();
     }
 
@@ -69,7 +69,9 @@ public class TokenProvider {
 
     }
 
-    // 4. 토큰 기반으로 유저 ID를 가져오는 메소드
+    /**
+     * 4. 토큰 기반으로 유저 ID를 가져오는 메소드
+     */
     public Long getUserId(String token){
         Claims claims = getClaims(token);
         return claims.get("id", Long.class);
